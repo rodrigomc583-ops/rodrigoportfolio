@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rodrigo Martinez · Senior Product Manager</title>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "y5xayghho8");</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://rodrigo-pm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+  :root {
+    --navy: #0c1a36;
+    --navy2: #162444;
+    --blue: #2563eb;
+    --blue2: #1d4ed8;
+    --accent: #f59e0b;
+    --accent2: #fbbf24;
+    --white: #ffffff;
+    --off: #f8fafc;
+    --border: #e2e8f0;
+    --gray: #94a3b8;
+    --text: #1e293b;
+    --muted: #64748b;
+    --r: 12px;
+    --sh: 0 4px 24px rgba(0,0,0,0.08);
+    --sh2: 0 12px 48px rgba(0,0,0,0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+  /* ─── MINIMAL HEADER ─── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    background: transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  header.scrolled {
+    background: rgba(12, 26, 54, 0.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .header-name {
+    font-weight: 800; font-size: 1rem; color: var(--white);
+    letter-spacing: 0.01em; opacity: 0; transition: opacity 0.3s;
+  }
+  header.scrolled .header-name { opacity: 1; }
+  .hamburger {
+    width: 40px; height: 40px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    border: none; background: none; padding: 4px;
+    border-radius: 8px; transition: background 0.2s;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.1); }
+  .hamburger span {
+    display: block; height: 2px; width: 22px;
+    background: rgba(255,255,255,0.85); border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Desktop nav links in header */
+  .header-nav {
+    display: flex; align-items: center; gap: 0.25rem;
+  }
+  .header-nav a {
+    color: rgba(255,255,255,0.55); text-decoration: none;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em;
+    padding: 0.4rem 0.75rem; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .header-nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+  .header-nav a.active { color: var(--accent); }
+  @media (max-width: 768px) { .header-nav { display: none; } }
+
+  /* ─── OVERLAY NAV ─── */
+  .nav-overlay {
+    position: fixed; inset: 0; z-index: 190;
+    background: rgba(12, 26, 54, 0.98);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .nav-overlay.open { opacity: 1; pointer-events: all; }
+  .nav-overlay nav { display: flex; flex-direction: column; gap: 0.25rem; }
+  .nav-overlay a {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+    color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: -0.02em;
+    padding: 0.3rem 0; transition: color 0.2s;
+    display: flex; align-items: baseline; gap: 1rem;
+  }
+  .nav-overlay a:hover { color: var(--white); }
+  .nav-overlay a span.nav-num { font-size: 0.85rem; font-weight: 500; color: var(--accent); opacity: 0.7; }
+
+  /* ─── SIDE DOTS ─── */
+  .side-dots {
+    position: fixed; right: 1.25rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 10px; z-index: 150;
+    background: rgba(12,26,54,0.55);
+    backdrop-filter: blur(8px);
+    padding: 10px 7px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.45); cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none; padding: 0;
+  }
+  .dot.active { background: var(--accent); transform: scale(1.4); }
+  .dot:hover { background: rgba(255,255,255,0.8); }
+
+  /* ─── SECTIONS ─── */
+  section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .wrap { max-width: 1100px; margin: 0 auto; width: 100%; padding: 5rem 2rem; }
+
+  /* ─── HERO ─── */
+  #hero {
+    background: linear-gradient(140deg, var(--navy) 0%, #162444 55%, #1a3573 100%);
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 75% 50%, rgba(37,99,235,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  /* left */
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-size: 1.875rem; font-weight: 900;
+    color: var(--white); line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 0.15rem;
+  }
+  .hero-title {
+    font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400;
+    color: rgba(255,255,255,0.55); margin-bottom: 2.5rem;
+  }
+
+  .diff-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2.5rem; }
+  .diff-item {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    color: rgba(255,255,255,0.88); font-size: 0.95rem; line-height: 1.5;
+  }
+  .diff-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    flex-shrink: 0; margin-top: 0.5rem;
+  }
+  .diff-item strong { color: var(--white); }
+
+  .hero-contact {
+    display: flex; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+  }
+  .hero-contact a {
+    color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem;
+    transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem;
+  }
+  .hero-contact a:hover { color: var(--accent2); }
+
+  /* nameplate: small photo anchored to name */
+  .hero-nameplate {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;
+  }
+  .hero-photo-sm {
+    width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+    object-fit: cover; object-position: center center;
+    border: 3px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 0 5px rgba(37,99,235,0.25);
+  }
+  .hero-ph-placeholder {
+    width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(37,99,235,0.35), rgba(245,158,11,0.15));
+    border: 3px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.7); font-weight: 800; font-size: 1.3rem;
+  }
+
+  /* right: clean product screens */
+  .hero-screens { display: flex; flex-direction: column; gap: 1rem; }
+  .hscreen {
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: var(--sh2); background: var(--navy2);
+  }
+  .hscreen img { width: 100%; display: block; height: 195px; object-fit: cover; object-position: top; }
+  .hscreen-ph {
+    height: 195px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(245,158,11,0.08));
+    font-size: 0.7rem; color: rgba(255,255,255,0.3); text-align: center;
+  }
+
+  /* metrics cards below hero */
+  .metrics-cards {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem;
+    margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .mcard {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.25rem 1rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .mcard:hover { background: rgba(255,255,255,0.07); border-color: rgba(245,158,11,0.3); }
+  .mcard-icon { font-size: 1.25rem; line-height: 1; margin-bottom: 0.2rem; }
+  .mcard-num { font-size: 2rem; font-weight: 900; color: var(--accent); line-height: 1; letter-spacing: -0.03em; }
+  .mcard-label { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
+  .mcard-source { font-size: 0.65rem; color: rgba(255,255,255,0.25); margin-top: 0.15rem; font-style: italic; }
+  @media (max-width: 1100px) { .metrics-cards { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .metrics-cards { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ─── CASE STUDIES ─── */
+  #work { background: var(--off); }
+  .sl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+  .st { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+  .sub { font-size: 1rem; color: var(--muted); max-width: 580px; line-height: 1.7; margin-bottom: 3rem; }
+
+  .cases { display: flex; flex-direction: column; gap: 2.5rem; }
+  .case {
+    background: var(--white); border-radius: 16px;
+    border: 1px solid var(--border); box-shadow: var(--sh);
+    overflow: hidden; transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .case:hover { box-shadow: var(--sh2); transform: translateY(-2px); }
+  .case-h {
+    display: grid; grid-template-columns: 1fr auto; gap: 1.5rem;
+    padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--border); align-items: start;
+  }
+  .case-industry {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    background: var(--accent); color: var(--navy);
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.22rem 0.65rem; border-radius: 100px;
+    margin-bottom: 0.5rem;
+  }
+  .case-co { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.35rem; }
+  .case-tt { font-size: 1.25rem; font-weight: 800; color: var(--navy); line-height: 1.25; margin-bottom: 0.6rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag { font-size: 0.7rem; font-weight: 600; padding: 0.18rem 0.6rem; border-radius: 100px; background: #eff6ff; color: var(--blue); border: 1px solid #bfdbfe; }
+  .case-ms { display: flex; gap: 0.75rem; flex-shrink: 0; }
+  .ms { text-align: center; background: var(--off); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; min-width: 80px; }
+  .ms-n { font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .ms-l { font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.3; }
+  .case-b { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; padding: 1.75rem 2.5rem; }
+  .col-l { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; border-bottom: 2px solid #bfdbfe; padding-bottom: 0.35rem; }
+  .col-t { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+  .col-t ul { padding-left: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .col-t li { color: var(--muted); }
+  .col-t li strong { color: var(--text); }
+
+  /* with screenshot variant */
+  .case-h-with-img { grid-template-columns: auto 1fr auto; gap: 1.5rem; }
+  .case-img { width: 120px; height: 80px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--off); border: 1px solid var(--border); }
+  .case-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .case-img-ph { width: 100%; height: 100%; background: linear-gradient(135deg, #eff6ff, #dbeafe); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--muted); text-align: center; padding: 0.4rem; }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--navy); }
+  #about .sl { color: var(--accent2); }
+  #about .st { color: var(--white); }
+  #about .sub { color: rgba(255,255,255,0.55); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+  .timeline-v { display: flex; flex-direction: column; gap: 0; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 1.5rem; margin-bottom: 2rem; }
+  .tv-step { position: relative; padding-bottom: 1.75rem; }
+  .tv-step::before { content: ''; position: absolute; left: -1.85rem; top: 0.45rem; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); border: 2px solid var(--navy); box-shadow: 0 0 0 2px var(--blue); }
+  .tv-step:last-child::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .tv-year { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-bottom: 0.2rem; }
+  .tv-role { font-weight: 700; color: var(--white); font-size: 0.95rem; }
+  .tv-co { font-size: 0.83rem; color: rgba(255,255,255,0.5); margin-top: 0.1rem; }
+  .tv-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-top: 0.35rem; line-height: 1.5; }
+
+  .skills-right { display: flex; flex-direction: column; gap: 1.75rem; }
+  .sg-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem; }
+  .stags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .stag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); font-size: 0.8rem; padding: 0.3rem 0.75rem; border-radius: 100px; font-weight: 500; }
+  .stag.bl { background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.35); color: #93c5fd; }
+  .stag.am { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.3); color: #fcd34d; }
+  .stag.gr { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.25); color: #6ee7b7; }
+
+  .certs-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .cert {
+    background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.35);
+    border-radius: 8px; padding: 0.45rem 0.9rem;
+    font-size: 0.78rem; font-weight: 600; color: #93c5fd;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .cert::before { content: '✓'; color: var(--accent); font-size: 0.7rem; font-weight: 800; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--off); min-height: auto; }
+  .contact-inner { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; text-align: center; }
+  #contact .sl { text-align: center; }
+  #contact .st { text-align: center; color: var(--navy); }
+  #contact .sub { margin: 0 auto 3rem; text-align: center; }
+  .contact-row { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .clink {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.5rem; border-radius: var(--r);
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1.5px solid var(--border); color: var(--text); background: var(--white);
+  }
+  .clink:hover { transform: translateY(-2px); box-shadow: var(--sh); }
+  .clink.primary { background: var(--navy); color: var(--white); border-color: transparent; }
+  .clink .icon { font-size: 1.1rem; }
+
+  /* ─── PM FRAMEWORK STRIP ─── */
+  .pm-framework {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: var(--navy); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 2.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .pmf-step {
+    display: flex; align-items: center; gap: 0;
+    font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+  }
+  .pmf-step span {
+    padding: 0.3rem 0.6rem; border-radius: 6px;
+    transition: background 0.2s; cursor: default;
+  }
+  .pmf-step span:hover { background: rgba(245,158,11,0.15); color: var(--accent2); }
+  .pmf-arrow { color: rgba(255,255,255,0.2); font-size: 0.65rem; padding: 0 0.1rem; }
+
+  /* ─── MORE PROJECTS ─── */
+  .more-projects { margin-top: 3rem; }
+  .more-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.25rem; }
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .proj-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .proj-card:hover { box-shadow: var(--sh); transform: translateY(-2px); }
+  .proj-co { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.35rem; }
+  .proj-tt { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+  .proj-img { width: 100%; height: 120px; border-radius: 8px; overflow: hidden; margin-bottom: 0.75rem; background: var(--off); border: 1px solid var(--border); }
+  .proj-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .proj-outcomes { display: flex; flex-direction: column; gap: 0.3rem; }
+  .proj-outcome { font-size: 0.8rem; color: var(--muted); display: flex; gap: 0.5rem; }
+  .proj-outcome::before { content: '→'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  @media (max-width: 768px) { .proj-grid { grid-template-columns: 1fr; } }
+
+  footer { background: var(--navy); padding: 1.25rem 2rem; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.78rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-screens { margin-top: 1.5rem; }
+    .hscreen img { height: 150px; }
+    .case-h, .case-h-with-img { grid-template-columns: 1fr; }
+    .case-b { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .side-dots { display: none; }
+    .case-ms { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="header-name">Rodrigo Martinez</div>
+  <nav class="header-nav" id="header-nav">
+    <a href="#hero">Home</a>
+    <a href="#work">Case Studies</a>
+    <a href="#about">Background</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="hamburger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- OVERLAY NAV -->
+<div class="nav-overlay" id="nav-overlay">
+  <nav>
+    <a href="#hero" data-close><span class="nav-num">01</span> Home</a>
+    <a href="#work" data-close><span class="nav-num">02</span> Case Studies</a>
+    <a href="#about" data-close><span class="nav-num">03</span> Background</a>
+    <a href="#contact" data-close><span class="nav-num">04</span> Contact</a>
+  </nav>
+</div>
+
+<!-- SIDE DOTS -->
+<div class="side-dots" id="side-dots">
+  <button class="dot active" data-target="hero" title="Home"></button>
+  <button class="dot" data-target="work" title="Case Studies"></button>
+  <button class="dot" data-target="about" title="Background"></button>
+  <button class="dot" data-target="contact" title="Contact"></button>
+</div>
+
+<!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <!-- LEFT: TEXT -->
+      <div>
+        <p class="hero-eyebrow">Senior Product Manager</p>
+
+        <!-- Nameplate: photo anchored to name -->
+        <div class="hero-nameplate">
+          <img src="images/image (3).webp" alt="Rodrigo Martinez" class="hero-photo-sm"
+            width="100" height="100" fetchpriority="high"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hero-ph-placeholder" style="display:none">RM</div>
+          <h1 class="hero-name">Rodrigo Martinez</h1>
+        </div>
+
+        <p class="hero-title">San Antonio, TX · Remote</p>
+
+        <div class="diff-list">
+          <div class="diff-item">
+            <div class="diff-dot"></div>
+            <span><strong>20 years in tech · 8 as PM</strong>: engineering roots from QA labs to AI product builds</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-dot"></div>
+            <span><strong>QA Lead → Founder → Sr PM</strong>: built from zero, scaled what works, and understand what breaks</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-dot"></div>
+            <span><strong>AI PM who shipped a live product in under 30 days</strong>: managing team velocity, feature accuracy, and stakeholder trust through AI tools</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-dot"></div>
+            <span><strong>ML at 98% accuracy and LLM in production</strong>: I evaluate AI output for business impact, not just model performance</span>
+          </div>
+          <div class="diff-item">
+            <div class="diff-dot"></div>
+            <span><strong>AI platform strategy to production</strong>: defined ML roadmaps, LLM integration layers, and RAG-based product architecture across fintech and enterprise SaaS</span>
+          </div>
+        </div>
+
+        <div class="hero-contact">
+          <a href="tel:4047897091">📞 404-789-7091</a>
+          <a href="mailto:rodrigo.mc583@gmail.com">✉️ rodrigo.mc583@gmail.com</a>
+          <a href="https://linkedin.com/in/rodrigo-martinezc" target="_blank">💼 LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: CLEAN PRODUCT SCREENS -->
+      <div class="hero-screens">
+        <div class="hscreen">
+          <!-- object-position crops left sidebar where branding appears -->
+          <img src="images/image (18).webp" alt="Financial analytics platform"
+            width="482" height="300" fetchpriority="high"
+            style="object-position: 60% top;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hscreen-ph" style="display:none">Financial Analytics Platform</div>
+        </div>
+        <div class="hscreen">
+          <img src="images/image (14).webp" alt="Mobile health platform"
+            width="482" height="300" fetchpriority="high"
+            style="object-position: center top;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hscreen-ph" style="display:none">Mobile Health Platform</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- METRICS CARDS -->
+    <div class="metrics-cards">
+      <div class="mcard">
+        <div class="mcard-icon">🗓️</div>
+        <div class="mcard-num">20 / 8</div>
+        <div class="mcard-label">Years in tech · years as PM</div>
+        <div class="mcard-source">Engineering roots · product leadership</div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon">🚀</div>
+        <div class="mcard-num">8+</div>
+        <div class="mcard-label">Products launched 0→1</div>
+        <div class="mcard-source">Across 7 industries</div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon">🤖</div>
+        <div class="mcard-num">30 days</div>
+        <div class="mcard-label">AI-managed product, live</div>
+        <div class="mcard-source">30+ users · shipped at AI velocity</div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon">🧠</div>
+        <div class="mcard-num">98%</div>
+        <div class="mcard-label">ML model accuracy</div>
+        <div class="mcard-source">BanRegio · predictive analytics</div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon">📈</div>
+        <div class="mcard-num">5×</div>
+        <div class="mcard-label">Revenue growth</div>
+        <div class="mcard-source">Onephase · 5-year run</div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon">🌎</div>
+        <div class="mcard-num">EN/ES</div>
+        <div class="mcard-label">Native bilingual</div>
+        <div class="mcard-source">English · Spanish</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ CASE STUDIES ════════════════════════════════ -->
+<section id="work">
+  <div class="wrap">
+    <p class="sl">Case Studies</p>
+    <h2 class="st">Problem. Approach. Impact.</h2>
+    <p class="sub">Every engagement starts with discovery: understanding the real problem, not the assumed one. I map user value and business impact before any requirement is written, define success metrics upfront, and align stakeholders before the first sprint. Through execution I track continuously, gather customer feedback, and iterate. The framework doesn't change. Only the industry does.</p>
+
+    <div class="cases">
+
+      <!-- BanRegio -->
+      <div class="case">
+        <div class="case-h case-h-with-img">
+          <div class="case-img">
+            <img src="images/image (17).webp" alt="BanRegio billing dashboard" width="600" height="400" loading="lazy" style="object-position: 60% top;"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="case-img-ph" style="display:none">BanRegio Dashboard</div>
+          </div>
+          <div>
+            <div class="case-industry">🏦 Fintech · Banking</div>
+            <div class="case-co">BanRegio · 2019 · Mexico</div>
+            <div class="case-tt">AI-Powered Financial Insights Platform for SMB Banking Clients</div>
+            <div class="tags">
+              <span class="tag">AI/ML</span><span class="tag">LLM</span>
+              <span class="tag">Data Dashboard</span><span class="tag">Fintech</span><span class="tag">B2B Banking</span>
+            </div>
+          </div>
+          <div class="case-ms">
+            <div class="ms"><div class="ms-n">98%</div><div class="ms-l">ML accuracy</div></div>
+            <div class="ms"><div class="ms-n">+10%</div><div class="ms-l">NPS lift</div></div>
+          </div>
+        </div>
+        <div class="case-b">
+          <div>
+            <div class="col-l">Problem</div>
+            <p class="col-t">One of the largest regional banks in Mexico needed to deliver more value to their SMB clients. Replace batch reporting with an AI-powered, always-on financial insights experience that gave small business owners real-time visibility into their finances.</p>
+          </div>
+          <div>
+            <div class="col-l">Approach</div>
+            <p class="col-t">Led innovation sessions with business and technical teams to break down complex challenges into actionable steps. Enabled AI and ML integration for personalized financial recommendations, drawing from each client's income and expenses via Mexican Treasury data. Led cross-functional delivery across engineering, data science, and design.</p>
+          </div>
+          <div>
+            <div class="col-l">Impact</div>
+            <ul class="col-t">
+              <li>Delivered new module for one of Mexico's largest regional banks</li>
+              <li><strong>98% AI/ML accuracy</strong> in financial data interpretation</li>
+              <li><strong>10% NPS improvement</strong> as SMB clients gained live financial visibility</li>
+              <li>LLM chat layer launched: plain-language financial Q&amp;A for end users</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hussmann -->
+      <div class="case">
+        <div class="case-h case-h-with-img">
+          <div class="case-img">
+            <img src="images/image (11).webp" alt="Hussmann test report" width="600" height="400" loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="case-img-ph" style="display:none">Hussmann Platform</div>
+          </div>
+          <div>
+            <div class="case-industry">🏭 Manufacturing · Enterprise</div>
+            <div class="case-co">Hussmann by Panasonic · 2021 · Internal Product</div>
+            <div class="case-tt">Operational Intelligence Platform: Lab Automation &amp; Real-Time Reporting</div>
+            <div class="tags">
+              <span class="tag">Desktop App</span><span class="tag">Web App</span>
+              <span class="tag">Automation</span><span class="tag">Internal Tooling</span><span class="tag">Manufacturing</span>
+            </div>
+          </div>
+          <div class="case-ms">
+            <div class="ms"><div class="ms-n">84%</div><div class="ms-l">Faster reporting</div></div>
+            <div class="ms"><div class="ms-n">2×</div><div class="ms-l">Lab capacity</div></div>
+            <div class="ms"><div class="ms-n">100%</div><div class="ms-l">Errors eliminated</div></div>
+          </div>
+        </div>
+        <div class="case-b">
+          <div>
+            <div class="col-l">Problem</div>
+            <p class="col-t">Hussmann (Panasonic) needed to capture, graph, and report operational efficiency of test lab results for their commercial refrigerators. Manual processes were slow and error-prone. The goal: standardize operations and replace manual reporting with automated, live data analysis.</p>
+          </div>
+          <div>
+            <div class="col-l">Approach</div>
+            <p class="col-t">Discovery was challenging: client processes were not standardized. After standardizing workflows, we connected the software directly to lab machinery through LabView, built a Desktop app to capture and upload data, and a Web app for users to interact with live reports and dashboards.</p>
+          </div>
+          <div>
+            <div class="col-l">Impact</div>
+            <ul class="col-t">
+              <li>Standardized client process end-to-end</li>
+              <li><strong>84% reduction</strong> in report time: 2 weeks → 2 days</li>
+              <li><strong>Doubled lab capacity</strong> through live data analysis</li>
+              <li><strong>100% manual errors eliminated</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Angel Hub -->
+      <div class="case">
+        <div class="case-h case-h-with-img">
+          <div class="case-img">
+            <img src="images/image (27).webp" alt="Angel Hub investor dashboard" width="600" height="400" loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="case-img-ph" style="display:none">Angel Hub Dashboard</div>
+          </div>
+          <div>
+            <div class="case-industry">💼 Venture Capital · FinTech</div>
+            <div class="case-co">Angel Hub · 2022 · Web Application</div>
+            <div class="case-tt">User Onboarding Digitization:From Admin-Dependent to Self-Serve</div>
+            <div class="tags">
+              <span class="tag">UX Optimization</span><span class="tag">Process Automation</span>
+              <span class="tag">Venture Capital</span><span class="tag">Web App</span>
+            </div>
+          </div>
+          <div class="case-ms">
+            <div class="ms"><div class="ms-n">65%</div><div class="ms-l">Faster onboarding</div></div>
+            <div class="ms"><div class="ms-n">90%</div><div class="ms-l">Less manual steps</div></div>
+            <div class="ms"><div class="ms-n">95%</div><div class="ms-l">Satisfaction</div></div>
+          </div>
+        </div>
+        <div class="case-b">
+          <div>
+            <div class="col-l">Problem</div>
+            <p class="col-t">Client had a slow onboarding process requiring heavy manual intervention from admins. The goal: transform a manual, admin-dependent flow into a fully digitized, self-serve experience, while optimizing operational overhead simultaneously.</p>
+          </div>
+          <div>
+            <div class="col-l">Approach</div>
+            <p class="col-t">Led comprehensive discovery: market research, competitor analysis, and user interviews to identify root causes. Managed stakeholder alignment and navigated trade-offs to prevent scope creep. Led the cross-functional Agile delivery team through execution.</p>
+          </div>
+          <div>
+            <div class="col-l">Impact</div>
+            <ul class="col-t">
+              <li><strong>65% reduction</strong> in onboarding time</li>
+              <li><strong>90% reduction</strong> in manual intervention steps</li>
+              <li><strong>95% customer satisfaction</strong> on post-launch surveys</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CheckApp -->
+      <div class="case">
+        <div class="case-h case-h-with-img">
+          <div class="case-img">
+            <img src="images/image (14).webp" alt="CheckApp mobile" width="600" height="400" loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="case-img-ph" style="display:none">CheckApp Mobile</div>
+          </div>
+          <div>
+            <div class="case-industry">🏥 Healthcare · SaaS</div>
+            <div class="case-co">CheckApp · 2020 · iOS · Android · Web</div>
+            <div class="case-tt">HIPAA-Compliant Patient-Caregiver Connection Platform</div>
+            <div class="tags">
+              <span class="tag">iOS &amp; Android</span><span class="tag">React Native</span>
+              <span class="tag">Healthcare SaaS</span><span class="tag">HIPAA</span><span class="tag">0→1 Launch</span>
+            </div>
+          </div>
+          <div class="case-ms">
+            <div class="ms"><div class="ms-n">3</div><div class="ms-l">Platforms shipped</div></div>
+            <div class="ms"><div class="ms-n">0→1</div><div class="ms-l">Full lifecycle</div></div>
+          </div>
+        </div>
+        <div class="case-b">
+          <div>
+            <div class="col-l">Problem</div>
+            <p class="col-t">Build a mobile healthcare SaaS platform connecting patients with their primary caregiver, with medication tracking, reminder notifications, and a task tracker designed for people managing chronic illness.</p>
+          </div>
+          <div>
+            <div class="col-l">Approach</div>
+            <p class="col-t">Led Discovery sessions, built user flow diagrams for each persona (patient, caregiver, admin). Led a cross-platform Web and Mobile delivery team. Managed stakeholders and made continuous trade-offs to keep roadmap delivery on track.</p>
+          </div>
+          <div>
+            <div class="col-l">Impact</div>
+            <ul class="col-t">
+              <li>iOS and Android apps shipped in <strong>React Native</strong></li>
+              <li>Web Admin application built and launched</li>
+              <li>Full HIPAA compliance throughout</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MORE PROJECTS -->
+    <div class="more-projects">
+      <div class="more-title">More Projects</div>
+      <div class="proj-grid">
+
+        <!-- BUHOX -->
+        <div class="proj-card">
+          <div class="proj-co">BUHOX · 2021 · Fintech · Wealth Management</div>
+          <div class="proj-tt">Digital Investor Onboarding &amp; Portfolio Management Platform</div>
+          <div class="proj-img">
+            <img src="images/image (8).webp" alt="BUHOX investor profile" width="600" height="400" loading="lazy" style="object-position: top;" />
+          </div>
+          <div class="tags" style="margin-bottom:0.75rem">
+            <span class="tag">Fintech</span><span class="tag">Wealth Management</span><span class="tag">Web App</span>
+          </div>
+          <div class="proj-outcomes">
+            <div class="proj-outcome">Fully digital KYC investor onboarding replacing paper-based process</div>
+            <div class="proj-outcome">Investor profile, document upload, and compliance declarations in one flow</div>
+            <div class="proj-outcome">Launched in Mexico under CNBV regulatory framework</div>
+          </div>
+        </div>
+
+        <!-- Texas A&M -->
+        <div class="proj-card">
+          <div class="proj-co">Texas A&amp;M University System · 2025 · Enterprise · Higher Ed</div>
+          <div class="proj-tt">Enterprise Web Platform Migration at University System Scale</div>
+          <div class="tags" style="margin-bottom:0.75rem">
+            <span class="tag">Enterprise SaaS</span><span class="tag">ADA/WCAG</span><span class="tag">Stakeholder Management</span><span class="tag">SEO Migration</span>
+          </div>
+          <div class="proj-outcomes">
+            <div class="proj-outcome">Managed 6 concurrent web platform migrations across the university system</div>
+            <div class="proj-outcome">Enforced ADA/WCAG accessibility and design system standards throughout</div>
+            <div class="proj-outcome">Preserved SEO across complete domain migrations while protecting delivery timelines with competing stakeholder priorities</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════ BACKGROUND ════════════════════════════════ -->
+<section id="about">
+  <div class="wrap">
+    <p class="sl">Background</p>
+    <h2 class="st">20 years in tech.<br>Every chapter built the next.</h2>
+    <p class="sub" style="color:rgba(255,255,255,0.55)">From QA engineering to founding a consultancy to shipping AI-first products: a career where depth compounds.</p>
+
+    <div class="about-grid">
+      <!-- LEFT: journey -->
+      <div>
+        <div class="timeline-v">
+          <div class="tv-step">
+            <div class="tv-year">2025 – Present</div>
+            <div class="tv-role">Senior Product Manager</div>
+            <div class="tv-co">Inventive · Enterprise SaaS &amp; AI-first builds</div>
+            <div class="tv-desc">Leading concurrent enterprise migrations including a multimillion-dollar product migration for one of the largest Accounting &amp; HR platforms in the US: W-4/I-9 compliance across all 50 states, ADA/WCAG accessibility. Also served as AI PM on a full-stack build shipped to 30+ users in under 30 days: developers using Claude, managed priorities at AI velocity, validated features, tracked meeting transcripts, GitHub activity, and Jira tickets entirely through AI tools.</div>
+          </div>
+          <div class="tv-step">
+            <div class="tv-year">2018 – 2025</div>
+            <div class="tv-role">Sr. Product Manager, CEO &amp; Co-Founder</div>
+            <div class="tv-co">Onephase · Fintech, Healthcare, Insurance, EdTech, BioTech</div>
+            <div class="tv-desc">Founded a product &amp; technology consultancy. Grew 5× through delivery quality and client relationships. Shipped 8+ products from 0 to 1 across 7 industries. Owned P&amp;L, hiring, contracts, and every outcome.</div>
+          </div>
+          <div class="tv-step">
+            <div class="tv-year">2005 – 2020</div>
+            <div class="tv-role">Quality Assurance Manager</div>
+            <div class="tv-co">Accenture · Bank of America · Fannie Mae</div>
+            <div class="tv-desc">Led enterprise QA on banking &amp; capital markets platforms. KYC/AML compliance, API integrations with Visa, MC, Amex. Drove Agile transformation from Waterfall across global teams.</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem">
+          <div class="sg-label" style="color:var(--accent2); font-size:0.75rem">Certifications</div>
+          <div class="certs-row">
+            <div class="cert">SAFe 6 Agile PM</div>
+            <div class="cert">SAFe 6 Agilist</div>
+            <div class="cert">ICAgile Agile Fundamentals</div>
+            <div class="cert">Product Analytics · Product School</div>
+            <div class="cert">ISTQB Foundational Tester</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: skills -->
+      <div class="skills-right">
+        <div>
+          <div class="sg-label">AI &amp; Emerging Tech</div>
+          <div class="stags">
+            <span class="stag bl">AI/ML</span><span class="stag bl">LLM</span>
+            <span class="stag bl">Agentic AI</span><span class="stag bl">RAG</span>
+            <span class="stag bl">Prompt Engineering</span><span class="stag bl">Generative AI</span>
+          </div>
+        </div>
+        <div>
+          <div class="sg-label">Industries</div>
+          <div class="stags">
+            <span class="stag">Fintech</span><span class="stag">Banking</span>
+            <span class="stag">Healthcare</span><span class="stag">Capital Markets</span>
+            <span class="stag">Enterprise SaaS</span><span class="stag">EdTech</span>
+            <span class="stag">BioTech</span><span class="stag">Insurance</span>
+          </div>
+        </div>
+        <div>
+          <div class="sg-label">PM Toolkit</div>
+          <div class="stags">
+            <span class="stag">Discovery</span><span class="stag">Roadmapping</span>
+            <span class="stag">Backlog Management</span><span class="stag">Go-To-Market</span>
+            <span class="stag">Stakeholder Management</span><span class="stag">0→1 Launch</span>
+          </div>
+        </div>
+        <div>
+          <div class="sg-label">Compliance</div>
+          <div class="stags">
+            <span class="stag am">HIPAA</span><span class="stag am">KYC/AML</span>
+            <span class="stag am">ADA/WCAG</span><span class="stag am">W-4 / I-9</span>
+          </div>
+        </div>
+        <div>
+          <div class="sg-label">Analytics &amp; Data</div>
+          <div class="stags">
+            <span class="stag">Mixpanel</span><span class="stag">Tableau</span>
+            <span class="stag">Adobe Analytics</span><span class="stag">SQL</span>
+            <span class="stag">REST APIs</span>
+          </div>
+        </div>
+        <div>
+          <div class="sg-label">Languages</div>
+          <div class="stags">
+            <span class="stag gr">🇺🇸 English (Native)</span>
+            <span class="stag gr">🇲🇽 Spanish (Native)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ CONTACT ════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="sl">Let's talk</p>
+    <h2 class="st">Looking for a Senior PM<br>who hits the ground running?</h2>
+    <p class="sub">20 years of context. Remote-ready. Available for W2, C2C, or 1099.</p>
+    <div class="contact-row">
+      <a href="mailto:rodrigo.mc583@gmail.com" class="clink primary">
+        <span class="icon">✉️</span> rodrigo.mc583@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/rodrigo-martinezc" target="_blank" class="clink">
+        <span class="icon">💼</span> LinkedIn
+      </a>
+      <a href="tel:4047897091" class="clink">
+        <span class="icon">📞</span> 404-789-7091
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Rodrigo Martinez · Senior Product Manager · San Antonio, TX (Remote)
+</footer>
+
+<script>
+  // ── Header scroll state ──
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Hamburger / overlay ──
+  const burger = document.getElementById('burger');
+  const overlay = document.getElementById('nav-overlay');
+  burger.addEventListener('click', () => {
+    const open = overlay.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('[data-close]').forEach(a => {
+    a.addEventListener('click', () => {
+      overlay.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Side dots ──
+  const sections = ['hero','work','about','contact'];
+  const dots = document.querySelectorAll('.dot');
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      document.getElementById(dot.dataset.target)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ── Active nav link highlight ──
+  const headerNavLinks = document.querySelectorAll('.header-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Side dots
+        dots.forEach(d => d.classList.remove('active'));
+        const active = document.querySelector(`.dot[data-target="${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+        // Header nav links
+        headerNavLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-30% 0px -30% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
+</body>
+</html>
