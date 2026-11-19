@@ -16,3 +16,7 @@ npx serve .
 ## Deploy
 
 Deployed via Netlify, connected to this repo's `main` branch. Publish directory: `/` (repo root). No build command needed.
+
+## About this branch
+
+`previous-portfolio` keeps the Senior PM version of the site as it was before the AI PM rebuild. Vercel builds it as a preview, so it stays viewable without being live.
